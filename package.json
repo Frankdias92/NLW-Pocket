@@ -4,18 +4,21 @@
   "description": "project from nlw pocket by the Rocketseat",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts",
+    "dev": "tsx --env-file .env watch src/http/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Franklin Macedo",
   "license": "ISC",
   "dependencies": {
+    "drizzle-orm": "^0.33.0",
     "fastify": "^4.28.1",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@types/node": "^22.5.4",
+    "drizzle-kit": "^0.24.2",
     "tsx": "^4.19.0"
   }
 }
