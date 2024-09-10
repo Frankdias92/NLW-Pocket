@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx --env-file .env watch src/http/server.ts",
     "seed": "tsx --env-file .env src/db/seed.ts",
-    "migration": "drizzle-kit generate",
+    "migration": "tsx --env-file drizzle-kit generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Franklin Macedo",
