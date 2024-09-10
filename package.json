@@ -4,8 +4,18 @@
   "description": "project from nlw pocket by the Rocketseat",
   "main": "index.js",
   "scripts": {
+    "dev": "tsx watch src/http/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Franklin Macedo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.28.1",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/node": "^22.5.4",
+    "tsx": "^4.19.0"
+  }
 }
