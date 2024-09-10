@@ -4,7 +4,7 @@
   "description": "project from nlw pocket by the Rocketseat",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --env-file .env watch src/http/server.ts",
+    "dev": "tsx watch --env-file .env src/http/server.ts",
     "seed": "tsx --env-file .env src/db/seed.ts",
     "migration": "tsx --env-file drizzle-kit generate",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
+    "dayjs": "^1.11.13",
     "drizzle-orm": "^0.33.0",
     "fastify": "^4.28.1",
     "postgres": "^3.4.4",
