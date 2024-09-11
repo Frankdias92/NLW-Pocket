@@ -4,9 +4,9 @@
   "description": "project from nlw pocket by the Rocketseat",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch --env-file .env src/http/server.ts",
-    "seed": "tsx --env-file .env src/db/seed.ts",
-    "migration": "tsx --env-file drizzle-kit generate",
+    "dev": "tsx watch src/http/server.ts",
+    "seed": "tsx src/db/seed.ts",
+    "migration": "drizzle-kit generate && drizzle-kit migrate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Franklin Macedo",
@@ -15,6 +15,7 @@
     "@fastify/cors": "^9.0.1",
     "@paralleldrive/cuid2": "^2.2.2",
     "dayjs": "^1.11.13",
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
     "fastify": "^4.28.1",
     "fastify-type-provider-zod": "^2.0.0",
