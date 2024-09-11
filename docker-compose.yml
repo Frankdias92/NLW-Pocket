@@ -25,7 +25,7 @@ services:
       - db
     volumes:
       - .:/app
-    command: ["sh", "-c", "npm run dev"]
+    command: ["sh", "-c", "npm run migration && npm run dev"]
     networks:
       - pocket_net
   
