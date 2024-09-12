@@ -22,6 +22,7 @@ export function ButtonText({ title, circle = false, ...rest }: ButtonProps) {
                 alignItems="center"
                 rounded={circle ? "$full" : "$xl"}
                 bgColor="$violet500"
+                $active-bgColor="$violet600"
                 {...rest}
             >
                 <Icon as={Plus}  color="$secondary100"/>

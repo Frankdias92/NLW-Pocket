@@ -1,5 +1,5 @@
 import { ItemOfList } from "@components/ItemOfList";
-import { Text, VStack } from "@gluestack-ui/themed";
+import { Button, Text, VStack } from "@gluestack-ui/themed";
 import { useState } from "react";
 import { FlatList } from "react-native";
 
@@ -9,9 +9,9 @@ export function PreSetList() {
         'one', 'two', 'three', 'four', 'five'
     ])
 
-    return (
+    return ( 
         <VStack w={"$full"} >
-            <FlatList 
+            <FlatList
                 data={list}
                 keyExtractor={item => item}
                 renderItem={({ item, index}) => (
