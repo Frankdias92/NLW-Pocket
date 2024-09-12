@@ -1,24 +1,31 @@
 import { Button, Center, Icon, Text } from "@gluestack-ui/themed";
 import { Plus } from "lucide-react-native";
-import { ComponentProps } from "react";
+import { ComponentProps, useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 type ButtonProps = ComponentProps<typeof Button> & {
     title: string
+    circle?: boolean
 }
 
-export function ButtonText({ title, ...rest }: ButtonProps) {
+export function ButtonText({ title, circle = false, ...rest }: ButtonProps) {
+    const [circleBtn, setCircleBtn] = useState(false)
+
+    const handleWithCircleBtn = () => {
+        setCircleBtn(circle)
+    }
 
     return (
             <Button
-                mt={24}
+                mt={circle ? 0 : 24}
                 gap={"$2"} 
                 alignItems="center"
+                rounded={circle ? "$full" : "$xl"}
                 bgColor="$violet500"
                 {...rest}
             >
                 <Icon as={Plus}  color="$secondary100"/>
-                <Text color="$secondary100">{title}</Text>
+               {circleBtn && <Text color="$secondary100">{title}</Text>}
             </Button>
         )
 }

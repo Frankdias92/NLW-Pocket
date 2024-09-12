@@ -1,16 +1,18 @@
-import { EntryPage } from '@components/EntryPage'
 import {
   Center,
   VStack,
 } from '@gluestack-ui/themed'
 
+import { EntryPage } from '@components/EntryPage'
+import { GoalsTasks } from '@components/GoalsTasks'
+
 export function Home() {
 
   return (
-    <VStack flex={1} bgColor="$secondary800">
+    <VStack flex={1} bgColor="$backgroundDark950">
       <Center flex={1} justifyContent="flex-start" px={'$8'}>
         <VStack>
-          <EntryPage />
+          <GoalsTasks />
         </VStack>
       </Center>
     </VStack>
