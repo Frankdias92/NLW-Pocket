@@ -4,7 +4,7 @@ import { View } from "react-native";
 
 export function ProgresBar() {
     return (
-        <Center w={"$full"} gap={12}>
+        <Center w={"$full"} gap={12} px={'$8'}>
             <View className="min-w-full h-2 bg-violet-600 rounded-full"/>
             <HStack w={"$full"} justifyContent="space-between">
                 <Text alignSelf="flex-start" color="$secondary400">

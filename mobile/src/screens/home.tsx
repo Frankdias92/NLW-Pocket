@@ -10,8 +10,8 @@ export function Home() {
 
   return (
     <VStack flex={1} bgColor="$backgroundDark950">
-      <Center flex={1} justifyContent="flex-start" px={'$8'}>
-        <VStack>
+      <Center flex={1} justifyContent="flex-start">
+        <VStack >
           <GoalsTasks />
         </VStack>
       </Center>

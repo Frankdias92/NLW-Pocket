@@ -6,7 +6,7 @@ import { ButtonText } from "@components/ButtonText";
 
 export function WeekOfTask() {
     return (
-        <VStack w={"$full"}>
+        <VStack w={"$full"} px={'$8'}>
             <HStack w={"$full"} alignItems="center" justifyContent="space-between" >
                 <HStack gap={12} h={50} alignItems="center">
                     <Icon as={Logo} width={36} height={36} margin={'auto'} />
