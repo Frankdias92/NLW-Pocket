@@ -43,8 +43,7 @@ export function GoalsTasks() {
                     <View className="min-w-full h-0.5 bg-stone-800 rounded-full"/>
                 </Center>
                 <PreSetList />
-
-                <TaskOfTheWeek  data={data[0]} /> 
+                <TaskOfTheWeek  data={data[0]}/> 
             </VStack>
             <HStack>
 

@@ -25,28 +25,34 @@ export function TaskOfTheWeek({ data }: TaskOfWeekProps) {
             </Heading>
 
 
-            <VStack w={"$full"} gap={16}>
-                <VStack>
-                    <Text 
-                        fontSize={"$lg"} 
-                        color="$secondary100"
-                        >
-                        Today
-                    </Text>
+            {data ? (
+                <VStack w={"$full"} gap={16}>
+                    <VStack>
+                        <Text 
+                            fontSize={"$lg"} 
+                            color="$secondary100"
+                            >
+                            Today
+                        </Text>
+                    </VStack>
+                    <FlatList
+                        data={data.tasks}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={({ item }) => (
+                            <ShowWeekListProgress 
+                                key={item.id} 
+                                task={item.task}
+                                time={item.time}
+                            />
+                        )}
+                        showsHorizontalScrollIndicator={false}
+                    />
                 </VStack>
-                <FlatList
-                    data={data.tasks}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <ShowWeekListProgress 
-                            key={item.id} 
-                            task={item.task}
-                            time={item.time}
-                        />
-                    )}
-                    showsHorizontalScrollIndicator={false}
-                />
-            </VStack>
+            ) : (
+                <Text color="$secondary400">
+                    You have not completed any goals this week.
+                </Text>
+            )}
         </VStack>
     )
 }
