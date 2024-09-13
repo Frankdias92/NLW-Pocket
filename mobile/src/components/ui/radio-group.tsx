@@ -1,29 +1,81 @@
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
-import { CheckCircle2, Circle } from 'lucide-react-native'
+import React, { useState } from 'react';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { CheckCircle, Circle } from 'lucide-react-native'; 
+import { HStack, Text } from '@gluestack-ui/themed';
 
-export function RadioGroup(props: RadioGroupPrimitive.RadioGroupProps) {
-  return (
-    <RadioGroupPrimitive.RadioGroup
-      {...props}
-      className="flex flex-col gap-2"
-    />
-  )
+
+export interface LabelValues {
+  label: string,
+  emoji: string,
+  times: 1
 }
 
-export function RadioGroupItem(props: RadioGroupPrimitive.RadioGroupItemProps) {
-  return (
-    <RadioGroupPrimitive.RadioGroupItem
-      {...props}
-      className="group bg-black border border-zinc-900 rounded-lg px-4 py-2.5 flex items-center justify-between outline-none hover:border-zinc-800 focus-visible:border-pink-500 focus-visible:ring-4 ring-pink-500/10 data-[state=checked]:bg-pink-500/5 data-[state=checked]:border-pink-500"
-    />
-  )
+export interface RadioGroupProps {
+  labelValues: LabelValues
 }
 
-export function RadioGroupIndicator() {
+export function RadioGroupItem({ labelValues, ...rest }: RadioGroupProps) {
+  const [isSelected, setIsSelected] = useState(false)
+
   return (
-    <>
-      <Circle className="size-4 text-zinc-600 group-data-[state=checked]:hidden" />
-      <CheckCircle2 className="size-4 text-pink-500 hidden group-data-[state=checked]:inline" />
-    </>
-  )
+    <HStack gap={6} 
+      justifyContent='space-between' 
+      bgColor='$secondary950'
+      paddingHorizontal={'$4'}
+      paddingVertical={'$3'}
+      rounded={'$lg'}
+      borderWidth={1}
+      borderColor='$secondary700'
+      >
+        {isSelected ? (
+          <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
+              <CheckCircle size={24} color="#FF4081" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
+            <Circle size={24} color="#9E9E9E" />
+          </TouchableOpacity>
+        )}
+        <Text color='$secondary100'>{labelValues.label}</Text>
+
+        <Text>{labelValues.emoji}</Text>
+    </HStack>
+  );
 }
+
+const labelValues = [
+  {
+    label: '1x in week',
+    emoji: '🥱',
+    times: 1
+  },
+  {
+    label: '2x in week',
+    emoji: '😎',
+    times: 2
+  },
+  {
+    label: '3x in week',
+    emoji: '😜',
+    times: 3
+  },
+  {
+    label: '4x in week',
+    emoji: '🤨',
+    times: 4
+  },
+  {
+    label: '5x in week',
+    emoji: '🤨',
+    times: 5
+  },
+  {
+    label: '6x in week',
+    emoji: '🤯',
+    times: 6
+  },
+  {
+    label: 'Every week!!!',
+    emoji: '🔥'
+  },
+]
