@@ -7,16 +7,18 @@ import { HStack, Text } from '@gluestack-ui/themed';
 export interface LabelValues {
   label: string,
   emoji: string,
-  times: 1
+  times?: number
 }
 
 export interface RadioGroupProps {
   labelValues: LabelValues
+  isSelelected: boolean
+  onPress: () => void
 }
 
-export function RadioGroupItem({ labelValues, ...rest }: RadioGroupProps) {
-  const [isSelected, setIsSelected] = useState(false)
+export function RadioGroupItem({ labelValues, isSelelected = false, onPress,  ...rest }: RadioGroupProps) {
 
+  
   return (
     <HStack gap={6} 
       justifyContent='space-between' 
@@ -25,57 +27,19 @@ export function RadioGroupItem({ labelValues, ...rest }: RadioGroupProps) {
       paddingVertical={'$3'}
       rounded={'$lg'}
       borderWidth={1}
-      borderColor='$secondary700'
+      borderColor={isSelelected ? "$violet400" : '$secondary700'}
+      mb={'$2'}
       >
-        {isSelected ? (
-          <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
-              <CheckCircle size={24} color="#FF4081" />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
-            <Circle size={24} color="#9E9E9E" />
-          </TouchableOpacity>
-        )}
-        <Text color='$secondary100'>{labelValues.label}</Text>
+        <TouchableOpacity onPress={onPress} accessibilityRole="radio" accessibilityState={{ selected: isSelelected }} {...rest}>
+                {isSelelected ? (
+                  <CheckCircle size={24} color="#FF4081" />
+                ) : (
+                  <Circle size={24} color="#9E9E9E" />
+                )}
+      </TouchableOpacity>
 
+        <Text color='$secondary100'>{labelValues.label}</Text>
         <Text>{labelValues.emoji}</Text>
     </HStack>
   );
 }
-
-const labelValues = [
-  {
-    label: '1x in week',
-    emoji: '🥱',
-    times: 1
-  },
-  {
-    label: '2x in week',
-    emoji: '😎',
-    times: 2
-  },
-  {
-    label: '3x in week',
-    emoji: '😜',
-    times: 3
-  },
-  {
-    label: '4x in week',
-    emoji: '🤨',
-    times: 4
-  },
-  {
-    label: '5x in week',
-    emoji: '🤨',
-    times: 5
-  },
-  {
-    label: '6x in week',
-    emoji: '🤯',
-    times: 6
-  },
-  {
-    label: 'Every week!!!',
-    emoji: '🔥'
-  },
-]

@@ -5,74 +5,59 @@ import { ButtonText } from "@components/ButtonText";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { View } from "react-native";
-import { RadioGroupItem } from "@components/ui/radio-group";
+import { LabelValues, RadioGroupItem } from "@components/ui/radio-group";
 import { useState } from "react";
 
 
 export function Main() {
-    const [selectedValue, setSelectedValue] = useState('');
-    const [task, setTask] = useState('')
-    const navigation = useNavigation<AppNavigatorRoutesProps>()
-    const labelValues = [
-        {
-          label: '1x in week',
-          emoji: '🥱',
-          times: 1
-        },
-        {
-          label: '2x in week',
-          emoji: '😎',
-          times: 2
-        },
-        {
-          label: '3x in week',
-          emoji: '😜',
-          times: 3
-        },
-        {
-          label: '4x in week',
-          emoji: '🤨',
-          times: 4
-        },
-        {
-          label: '5x in week',
-          emoji: '🤨',
-          times: 5
-        },
-        {
-          label: '6x in week',
-          emoji: '🤯',
-          times: 6
-        },
-        {
-          label: 'Every week!!!',
-          emoji: '🔥'
-        },
-      ]
+  const [selectedValue, setSelectedValue] = useState<string>('');
+  const [task, setTask] = useState<number | undefined>(undefined)
+  const [isSelelected, setIsSelected] = useState(false)
+  const [taskNumber, setTaskNumber] = useState<number | undefined>(undefined)
 
-    function handleWithTask() {
-        setTask(selectedValue)
-    }
-    
+  const navigation = useNavigation<AppNavigatorRoutesProps>()
+
+  const dataWeek: LabelValues[] = [
+    { label: '1x in week', emoji: '🥱', times: 1 },
+    { label: '2x in week', emoji: '😎', times: 2 },
+    { label: '3x in week', emoji: '😜', times: 3 },
+    { label: '4x in week', emoji: '🤨', times: 4 },
+    { label: '5x in week', emoji: '🤨', times: 5 },
+    { label: '6x in week', emoji: '🤯', times: 6 },
+    { label: 'Every week!!!', emoji: '🔥', times: 7 }
+  ];
+
+function handleWithTask() {
+    setTask(taskNumber)
+  }
+  
+  function onClickNewTask(times?: number) {
+    setTaskNumber(times)
+  }
+
     return (
         <Center flex={1} my={"$10"} gap={24} px={"$8"}>
             <VStack h={"$full"} alignItems="stretch" justifyContent="space-between">
                 <HStack>
                     <VStack gap={24}>
                         <HeadingNewGoals />
-                        <InputText onChangeText={(e) => setSelectedValue(e)}/>
+                        <InputText 
+                          onChangeText={(e) => setSelectedValue(e)}
+                          autoFocus
+                        />
                         
-                        <FlatList
-                            data={labelValues}
-                            keyExtractor={(item) => item.times}
-                            renderItem={({ item }) => (
-                                <RadioGroupItem 
-                                    key={item.times} 
-                                    labelValues={item}
-                                />
-                            )}
-                            showsHorizontalScrollIndicator={false}
-                        />                        
+                        <FlatList<LabelValues>
+                          data={dataWeek}
+                          keyExtractor={(item) => item.times?.toString() || item.label}
+                          renderItem={({ item }) => (
+                            <RadioGroupItem
+                              key={item.times}
+                              labelValues={item}
+                              isSelelected={item.times === taskNumber}
+                              onPress={() => onClickNewTask(item.times)} // Controlando a seleção
+                            />
+                          )}
+                        />                  
 
                     </VStack>
                 </HStack>
