@@ -1,20 +1,23 @@
+import { ProgresBarProgress } from "@components/ui/ProgresBar";
 import { Center, HStack, Text } from "@gluestack-ui/themed";
-import { ProgressBarAndroid, View, StyleSheet } from "react-native";
+// import { ProgressBar } from '@react-native-community/progress-bar-android';
+import { View, StyleSheet } from 'react-native'
 
 
 export function ProgresBar() {
     return (
         <Center w={"$full"} gap={12} px={'$8'}>
-            <View 
+            {/* <View 
                 className="min-w-full h-2 bg-violet-600 rounded-full"
                 style={styles.example}
             >
-                <ProgressBarAndroid
-                styleAttr="Horizontal"
-                indeterminate={false}
-                progress={0.75}
+                <ProgressBar
+                    styleAttr="Horizontal"
+                    indeterminate={false}
+                    progress={0.75}
                 />
-            </View>
+            </View> */}
+            <ProgresBarProgress />
             
             {/* <View className="min-w-full h-2 bg-violet-600 rounded-full"/> */}
             <HStack w={"$full"} justifyContent="space-between">

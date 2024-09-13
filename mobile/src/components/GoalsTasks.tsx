@@ -1,6 +1,6 @@
 import { Center, HStack, Text, VStack } from "@gluestack-ui/themed";
 import { WeekOfTask } from "./goals/WeekOfTask";
-import { ProgresBar } from "./goals/ProgresBar";
+import { ProgresBar } from "./goals/ProgresBarProgress";
 import { View } from "react-native";
 import { PreSetList } from "./goals/PreSetList";
 import { TaskOfTheWeek, TaskOfWeekProps } from "./TasksOfTheWeek";

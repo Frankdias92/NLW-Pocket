@@ -14,6 +14,7 @@
     "@gluestack-style/react": "^1.0.57",
     "@gluestack-ui/config": "^1.1.19",
     "@gluestack-ui/themed": "^1.1.34",
+    "@react-native-community/progress-bar-android": "^1.0.5",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "expo": "~51.0.28",
