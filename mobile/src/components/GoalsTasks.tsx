@@ -18,8 +18,6 @@ export function GoalsTasks() {
         staleTime: 1000 * 60 // 60 seconds
     })
 
-    console.log('print', data?.goalPerDay)
-
     return (
         <View>
             {data?.total && data?.total > 0 ? (
@@ -34,9 +32,7 @@ export function GoalsTasks() {
                             <View className="min-w-full h-0.5 bg-stone-800 rounded-full"/>
                         </Center>
                         <PeendingGoals />
-                        <TaskOfTheWeek 
-                            goalPerDay={data}
-                        /> 
+                        <TaskOfTheWeek /> 
                     </VStack>
                     <HStack>
         

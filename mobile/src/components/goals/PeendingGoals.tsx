@@ -1,39 +1,50 @@
 import { FlatList } from "react-native";
 import { useState } from "react";
 
-import { VStack } from "@gluestack-ui/themed";
+import { VStack, Text } from "@gluestack-ui/themed";
 import { ItemOfList } from "@components/ItemOfList";
 
 import { useQuery } from "@tanstack/react-query";
 import { getPendingGoals, PeendingGoalsResponse } from "../../service/get-peendingGoals";
 import { err } from "react-native-svg";
+import { createGoalCompletion } from "../../service/create-goal-completion";
 
 
 export function PeendingGoals() {
-    const { data = [] } = useQuery<PeendingGoalsResponse>({
+
+    const { data }  = useQuery<PeendingGoalsResponse>({
         queryKey: ['peending-goals'],
         queryFn: getPendingGoals,
-        // staleTime: 1000 * 60 // 60 seconds
     })
-    
+
     if (!data) {
         return null
     }
-    console.log('result', data.map(item => `${item.title} : ${item.completionCount }`))
-    
+
+    const handleCompleteGoal = async (goalId: string) => {
+        await createGoalCompletion(goalId)
+    }
+
     return ( 
         <VStack w={"$full"} >
-            <FlatList
-                data={data}
-                keyExtractor={item => item.id}
-                renderItem={({ item}) => (
-                    <ItemOfList key={item.id} itemList={item} disabled={ item.completionCount >= item.desiredWeeklyFrequency }/>
-                )}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingLeft: 32 }}
-                style={{ maxHeight: 44, minHeight: 44 }}
-            />
+            {data && data ? (
+                <FlatList
+                    data={data}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item}) => (
+                        <ItemOfList 
+                            key={item.id} 
+                            itemList={item} 
+                            disabled={ item.completionCount >= item.desiredWeeklyFrequency}
+                            onPress={() => handleCompleteGoal(item.id)}
+                        />
+                    )}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={{ paddingLeft: 32 }}
+                    style={{ maxHeight: 44, minHeight: 44 }}
+                />
+            ) : (<Text fontWeight={"$medium"} fontSize={"$sm"} color="$secondary400" px={"$8"}>loading...</Text>)}
         </VStack>
     )
 }

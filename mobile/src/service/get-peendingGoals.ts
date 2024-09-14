@@ -12,6 +12,9 @@ export async function getPendingGoals(): Promise<PeendingGoalsResponse> {
         throw new Error('Failed to fetch pending goals')
     }
     const data = await response.json()
+    // if (!data) {
+    //     throw  console.log('Error fetch data')
+    // }
 
-    return data.pendingGoals[0]
+    return data.pendingGoals 
 }
