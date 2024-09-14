@@ -13,7 +13,7 @@ interface ShowWeekList {
 }
 
 export function ShowWeekListProgress({ goalPerDay }: ShowWeekList) {
-    const weekDay = dayjs(goalPerDay.completedAt).format('dddd')
+    const weekDay = dayjs(goalPerDay.completedAt).format('HH:mm')
 
     return ( 
         <VStack w={"$full"} >

@@ -40,10 +40,10 @@ export function TaskOfTheWeek() {
                                                 fontSize={"$lg"} 
                                                 color="$secondary100"
                                                 >
-                                                { weekDay } 
+                                                { weekDay } {/* Saturday */}
                                             </Text>
                                             <Text>
-                                                ({ formatDate })
+                                                ({ formatDate })   {/* ( 14 September ) */}
                                             </Text>
                                         </HStack>
                                     </VStack>

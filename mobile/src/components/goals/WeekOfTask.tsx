@@ -26,7 +26,7 @@ export function WeekOfTask() {
                 <HStack gap={12} h={50} alignItems="center">
                     <Icon as={Logo} width={36} height={36} margin={'auto'} />
                     <Heading color="$secondary100" >
-                        { firstDayOfWeek }  -  { lastDayOfWeek }
+                        { firstDayOfWeek }  -  { lastDayOfWeek  }
                     </Heading>
                 </HStack>
                 <ButtonText title="Cadastrar meta" circleBtn={true} showIcon={true} onPress={() => navigation.navigate('newGoal')}/>
