@@ -2,7 +2,7 @@ import { Center, HStack, Text, VStack } from "@gluestack-ui/themed";
 import { WeekOfTask } from "./goals/WeekOfTask";
 import { ProgresBar } from "./goals/ProgresBarProgress";
 import { View } from "react-native";
-import { PreSetList } from "./goals/PreSetList";
+import { PeendingGoals } from "./goals/PeendingGoals";
 import { TaskOfTheWeek } from "./TasksOfTheWeek";
 
 import { EntryPage } from '@components/EntryPage'
@@ -33,7 +33,7 @@ export function GoalsTasks() {
                         <Center px={'$8'}>
                             <View className="min-w-full h-0.5 bg-stone-800 rounded-full"/>
                         </Center>
-                        <PreSetList />
+                        <PeendingGoals />
                         <TaskOfTheWeek 
                             goalPerDay={data}
                         /> 

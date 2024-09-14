@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query"
-
 export type SummaryProps = {
     completed: number;
     total: number;

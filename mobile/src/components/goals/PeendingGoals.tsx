@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FlatList } from "react-native";
 
 
-export function PreSetList() {
+export function PeendingGoals() {
     const [list, setList] = useState([
         'one', 'two', 'three', 'four', 'five'
     ])
