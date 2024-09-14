@@ -1,48 +1,47 @@
 import { Heading, Text, VStack } from "@gluestack-ui/themed";
 import { FlatList } from "react-native";
 import { ShowWeekListProgress } from "./ShowWeekListProgress";
+import { SummaryProps } from "./GoalsTasks";
 
 
-type data = {
-    tasks: {
-        id: number
-        task: string
-        time: string
-    }[],
-    weekTitle: string
+type GoalPerDayProps = {
+    id: string;
+    title: string;
+    completedAt: string;
+}[]
+
+interface GoalPerDay extends SummaryProps {
+    goalPerDay: GoalPerDayProps
 }
 
-export interface TaskOfWeekProps {
-    data: data
-}
+export function TaskOfTheWeek({ goalPerDay }: GoalPerDay ) {
 
-export function TaskOfTheWeek({ data }: TaskOfWeekProps) {
+    console.log('show week', { goalPerDay })
     
     return (
         <VStack px={'$8'} gap={24}>
             <Heading color="$secondary100">
-                { data.weekTitle}
+                Your week
             </Heading>
 
 
-            {data ? (
+            {goalPerDay ? (
                 <VStack w={"$full"} gap={16}>
                     <VStack>
                         <Text 
                             fontSize={"$lg"} 
                             color="$secondary100"
                             >
-                            Today
+                            Today {JSON.stringify(goalPerDay)}
                         </Text>
                     </VStack>
                     <FlatList
-                        data={data.tasks}
-                        keyExtractor={(item) => item.id.toString()}
+                        data={goalPerDay}
+                        keyExtractor={(item) => item.toString()}
                         renderItem={({ item }) => (
                             <ShowWeekListProgress 
-                                key={item.id} 
-                                task={item.task}
-                                time={item.time}
+                                key={item.toString()} 
+                                goalPerDay={item}
                             />
                         )}
                         showsHorizontalScrollIndicator={false}

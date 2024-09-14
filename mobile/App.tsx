@@ -6,7 +6,7 @@ import { Center, GluestackUIProvider, Text } from '@gluestack-ui/themed'
 import { config } from '@gluestack-ui/config'
 
 import { AppRouter } from '@routes/app.routes'
-import { StatusBar, View } from 'react-native'
+import { AppRegistry, StatusBar } from 'react-native'
 
 export default function App() {
   const [fontsloaded] = useFonts({ Roboto_400Regular })
@@ -24,3 +24,8 @@ export default function App() {
     </NavigationContainer>
   )
 }
+
+AppRegistry.registerComponent(
+  'MyReactNativeApp',
+  () => App,
+);
