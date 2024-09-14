@@ -1,5 +1,5 @@
 
-type PeendingGoalsResponse =  {
+export type PeendingGoalsResponse =  {
     id: string;
     title: string;
     desiredWeeklyFrequency: number;
@@ -8,7 +8,10 @@ type PeendingGoalsResponse =  {
 
 export async function getPendingGoals(): Promise<PeendingGoalsResponse> {
     const response = await fetch('http://192.168.1.21:3333/pending-goals')
+    if (!response.ok) {
+        throw new Error('Failed to fetch pending goals')
+    }
     const data = await response.json()
 
-    return data.summary
+    return data.pendingGoals[0]
 }
