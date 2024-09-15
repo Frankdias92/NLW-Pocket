@@ -3,7 +3,6 @@ import {
   VStack,
 } from '@gluestack-ui/themed'
 
-import { EntryPage } from '@components/EntryPage'
 import { GoalsTasks } from '@components/GoalsTasks'
 
 export function Home() {

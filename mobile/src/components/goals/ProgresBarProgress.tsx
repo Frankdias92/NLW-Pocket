@@ -24,7 +24,7 @@ export function ProgresBar() {
             <ProgresBarProgress progress={ completedPorcentage } />
             <HStack w={"$full"} justifyContent="space-between">
                 <Text alignSelf="flex-start" color="$secondary400">
-                    Você completou <Text color="$secondary100">{ data?.completed }</Text> de <Text color="$secondary100">{ data?.total }</Text>.
+                    You completed <Text color="$secondary100">{ data?.completed }</Text> of <Text color="$secondary100">{ data?.total }</Text>.
                 </Text>
 
                 <Text color="$secondary400">

@@ -10,9 +10,10 @@ type InputProps = ComponentProps<typeof InputField> & {
     isInvalid?: boolean
     isReadOnly?: boolean
     errorMessage?: string | null
+    placeholder: string
 }
 
-export function InputText({isInvalid = false, errorMessage = null, isReadOnly = false, ...rest}: InputProps) {
+export function InputText({isInvalid = false, errorMessage = null, isReadOnly = false, placeholder, ...rest}: InputProps) {
     const invalid = !!errorMessage || isInvalid
 
     return (
@@ -41,7 +42,7 @@ export function InputText({isInvalid = false, errorMessage = null, isReadOnly = 
                 >
                     <InputField 
                         bg="$secondary950" 
-                        placeholder="test"
+                        placeholder={placeholder}
                         px={"$4"}
                         color="$violet300"
                         fontFamily="$body" 

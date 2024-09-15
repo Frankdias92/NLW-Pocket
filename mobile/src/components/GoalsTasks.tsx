@@ -20,11 +20,8 @@ export function GoalsTasks() {
 
     return (
         <VStack flex={1}>
-            {data?.total && data?.total > 0 ? (
+            {data?.total && data?.total > 62 ? (
                 <Center flex={1}  justifyContent="flex-start" mt={"$10"} gap={24} >
-                    <Text>
-                    {data.total}
-                    </Text>
                     <VStack gap={24} >
                         <WeekOfTask />
                         <ProgresBar />

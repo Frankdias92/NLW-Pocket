@@ -14,7 +14,6 @@ export function TaskOfTheWeek() {
         queryFn: getSummary,
         staleTime: 1000 * 60 // 60 seconds
     })
-    // console.log('show week', { data })
     
     return (
         <VStack px={'$8'} gap={24} flex={1}>

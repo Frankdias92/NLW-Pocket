@@ -15,9 +15,9 @@ export function EntryPage() {
         <Icon as={Logo} width={115} height={36} margin={'auto'}/>
         <Icon as={Rocket} width={305} height={299} margin={'auto'}/>
         <Center>
-          <Text>Você ainda não cadastrou nenhuma meta,</Text>
-          <Text> que tal cadastrar um agora mesmo?</Text>
-          <ButtonText title='Cadastrar meta' onPress={() => navigation.navigate('newGoal')}/>
+          <Text>You have not registered any goal,</Text>
+          <Text> how about registering one right now.</Text>
+          <ButtonText title='Register goal' onPress={() => navigation.navigate('newGoal')}/>
         </Center>
       </VStack>
     </Center>

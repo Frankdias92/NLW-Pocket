@@ -30,15 +30,16 @@ export function Main() {
   ];
 
  const handleWithTask = async() => {
-  if (!desiredWeekly) {
-    return console.log('Missing value of desire week')
-  }
-  await createNewGoal(titleGoal, desiredWeekly)
-  setTitleGoal('')
-  setDesiredWeekly(null)
+    if (!desiredWeekly || !titleGoal) {
+      return console.log('Missing value of desire week')
+    }
+    await createNewGoal(titleGoal, desiredWeekly)
+    setTitleGoal('')
+    setDesiredWeekly(null)
 
-  queryClient.invalidateQueries({ queryKey: ['summary']})
-  queryClient.invalidateQueries({ queryKey: ['peending-goals']})
+    queryClient.invalidateQueries({ queryKey: ['summary']})
+    queryClient.invalidateQueries({ queryKey: ['peending-goals']})
+    navigation.goBack()
   }
   
   function onClickNewTask(times: number) {
@@ -52,6 +53,7 @@ export function Main() {
                     <VStack gap={24}>
                         <HeadingNewGoals />
                         <InputText 
+                          placeholder='Be a better person!'
                           onChangeText={(e) => setTitleGoal(e)}
                           autoFocus
                         />

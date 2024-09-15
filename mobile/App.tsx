@@ -2,7 +2,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { Roboto_400Regular, useFonts } from '@expo-google-fonts/roboto'
 
-import { Center, GluestackUIProvider, Text } from '@gluestack-ui/themed'
+import { GluestackUIProvider, Text } from '@gluestack-ui/themed'
 import { config } from '@gluestack-ui/config'
 
 import { AppRouter } from '@routes/app.routes'
@@ -25,7 +25,7 @@ export default function App() {
   )
 }
 
-AppRegistry.registerComponent(
-  'MyReactNativeApp',
-  () => App,
-);
+// AppRegistry.registerComponent(
+//   'MyReactNativeApp',
+//   () => App,
+// );

@@ -1,6 +1,5 @@
 import { Main } from "@components/createNewGoal/main";
-import { Center, Text, VStack } from "@gluestack-ui/themed";
-
+import { Center, VStack } from "@gluestack-ui/themed";
 
 export function NewGoal() {
     return (
