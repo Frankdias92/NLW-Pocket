@@ -19,9 +19,9 @@ export function GoalsTasks() {
     })
 
     return (
-        <View>
+        <VStack flex={1}>
             {data?.total && data?.total > 0 ? (
-                <Center flex={1} justifyContent="flex-start" mt={"$10"} gap={24} >
+                <Center flex={1}  justifyContent="flex-start" mt={"$10"} gap={24} >
                     <Text>
                     {data.total}
                     </Text>
@@ -32,16 +32,15 @@ export function GoalsTasks() {
                             <View className="min-w-full h-0.5 bg-stone-800 rounded-full"/>
                         </Center>
                         <PeendingGoals />
+                    </VStack>
+                    <VStack flex={1} >
                         <TaskOfTheWeek /> 
                     </VStack>
-                    <HStack>
-        
-                    </HStack>
                 </Center>
             ) : (
                 <EntryPage />
             )}
-        </View>
+        </VStack>
         
     )
 }

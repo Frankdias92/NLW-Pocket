@@ -17,14 +17,14 @@ export function TaskOfTheWeek() {
     // console.log('show week', { data })
     
     return (
-        <VStack px={'$8'} gap={24}>
+        <VStack px={'$8'} gap={24} flex={1}>
             <Heading color="$secondary100">
                 Your week
             </Heading>
 
 
             {data ? (
-                <VStack w={"$full"} gap={16}>
+                <VStack w={"$full"} gap={16} flex={1}>
                     <FlatList
                         data={Object.entries(data.goalPerDay)}
                         keyExtractor={([date]) => date}

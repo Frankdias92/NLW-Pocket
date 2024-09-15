@@ -4,13 +4,14 @@ import { useState } from "react";
 import { VStack, Text } from "@gluestack-ui/themed";
 import { ItemOfList } from "@components/ItemOfList";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getPendingGoals, PeendingGoalsResponse } from "../../service/get-peendingGoals";
 import { err } from "react-native-svg";
 import { createGoalCompletion } from "../../service/create-goal-completion";
 
 
 export function PeendingGoals() {
+    const queryClient = useQueryClient()
 
     const { data }  = useQuery<PeendingGoalsResponse>({
         queryKey: ['peending-goals'],
@@ -23,6 +24,9 @@ export function PeendingGoals() {
 
     const handleCompleteGoal = async (goalId: string) => {
         await createGoalCompletion(goalId)
+
+        queryClient.invalidateQueries({ queryKey: ['summary']})
+        queryClient.invalidateQueries({ queryKey: ['peending-goals']})
     }
 
     return ( 

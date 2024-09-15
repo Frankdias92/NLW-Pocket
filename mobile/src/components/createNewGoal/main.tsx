@@ -7,13 +7,15 @@ import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { View } from "react-native";
 import { LabelValues, RadioGroupItem } from "@components/ui/radio-group";
 import { useState } from "react";
+import { createNewGoal } from "../../service/create-goal-new";
+import { useQueryClient } from "@tanstack/react-query";
 
 
 export function Main() {
-  const [selectedValue, setSelectedValue] = useState<string>('');
+  const queryClient = useQueryClient()
+  const [titleGoal, setTitleGoal] = useState<string>('');
   const [task, setTask] = useState<number | undefined>(undefined)
-  const [isSelelected, setIsSelected] = useState(false)
-  const [taskNumber, setTaskNumber] = useState<number | undefined>(undefined)
+  const [desiredWeekly, setDesiredWeekly] = useState<number | null >(null)
 
   const navigation = useNavigation<AppNavigatorRoutesProps>()
 
@@ -27,12 +29,20 @@ export function Main() {
     { label: 'Every week!!!', emoji: '🔥', times: 7 }
   ];
 
-function handleWithTask() {
-    setTask(taskNumber)
+ const handleWithTask = async() => {
+  if (!desiredWeekly) {
+    return console.log('Missing value of desire week')
+  }
+  await createNewGoal(titleGoal, desiredWeekly)
+  setTitleGoal('')
+  setDesiredWeekly(null)
+
+  queryClient.invalidateQueries({ queryKey: ['summary']})
+  queryClient.invalidateQueries({ queryKey: ['peending-goals']})
   }
   
-  function onClickNewTask(times?: number) {
-    setTaskNumber(times)
+  function onClickNewTask(times: number) {
+    setDesiredWeekly(times)
   }
 
     return (
@@ -42,7 +52,7 @@ function handleWithTask() {
                     <VStack gap={24}>
                         <HeadingNewGoals />
                         <InputText 
-                          onChangeText={(e) => setSelectedValue(e)}
+                          onChangeText={(e) => setTitleGoal(e)}
                           autoFocus
                         />
                         
@@ -53,8 +63,8 @@ function handleWithTask() {
                             <RadioGroupItem
                               key={item.times}
                               labelValues={item}
-                              isSelelected={item.times === taskNumber}
-                              onPress={() => onClickNewTask(item.times)} // Controlando a seleção
+                              isSelelected={item.times === desiredWeekly}
+                              onPress={() => onClickNewTask(item.times)}
                             />
                           )}
                         />                  
