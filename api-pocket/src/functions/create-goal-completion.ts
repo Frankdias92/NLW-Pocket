@@ -57,3 +57,18 @@ export async function createGoalCompletion({
 
   return { goalCompletion }
 }
+
+export async function removeGoalCompletion({ goalId }: CreateGoalCompletionRequest) {
+  const result = await db
+    .delete(goalCompletions)
+    .where(eq(goalCompletions.goalId, goalId))
+    // .orderBy(sql`${goalCompletions.createdAt} desc`)
+    // .limit(1)
+    .returning()
+
+  if (!result[0]) {
+    throw new Error('No completion found to remove')
+  }
+
+  return { success: true }
+}
