@@ -3,8 +3,8 @@ import { goalCompletions, goals } from './schema'
 import dayjs from 'dayjs'
 
 async function seed() {
-  //   await db.delete(goalCompletions).execute()
-  //   await db.delete(goals)
+    await db.delete(goalCompletions).execute()
+    await db.delete(goals)
 
   const result = await db
     .insert(goals)
