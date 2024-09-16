@@ -38,7 +38,7 @@ export function Main() {
     queryClient.invalidateQueries({ queryKey: ['summary']})
     queryClient.invalidateQueries({ queryKey: ['peending-goals']})
     
-    navigation.goBack()
+    navigation.navigate('home')
   }
   
   function onClickNewTask(times: number) {
@@ -74,7 +74,7 @@ export function Main() {
                 </HStack>
 
                 <HStack w={"$full"} gap={12} alignSelf="flex-end">
-                    <ButtonText title="Close" showIcon={false} variant="solid" onPress={() => navigation.goBack()}/>
+                    <ButtonText title="Close" showIcon={false} variant="solid" onPress={() => navigation.navigate('home')}/>
                     <ButtonText title="Save" showIcon={false} onPress={handleWithTask}/>
                 </HStack >
             </VStack>

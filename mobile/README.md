@@ -1,148 +1,147 @@
-# Task Manager
+# Next Level Week 17 - Front-End Application
 
-This is a simple task management application built with **React Native** and styled using **Gluestack UI** and **NativeWind**. The app allows users to create, delete, and mark tasks as completed, and it provides real-time tracking of the total number of tasks.
+This repository contains the code for the front-end of the application developed during the 17th edition of the Next Level Week, held from September 9 to 11, 2024. This project demonstrates how to build a mobile application using React Native and Expo.
 
-<div style="display: flex; with: auto; gap: 16px; justify-content: center">
-    <img src="./assets/demoPreview.gif" style="display: flex; height: 850px; border-radius:25px"/>
-    <img src="./assets/preview.png" style="display: flex; height: 850px; border-radius:25px"/>
-</div>
+## Project Overview
 
-## Features
-
-- **Add Task**: Allows users to create new tasks.
-- **Delete Task**: Users can delete tasks from the list.
-- **Mark Task as Completed**: Users can toggle tasks between completed and incomplete.
-- **Task Counter**: Real-time tracking of the number of tasks created and completed.
+In this project, we built the front-end of an application that allows users to manage goals. The application interacts with a back-end API to create, update, and retrieve goals, as well as manage their completion status.
 
 ## Technologies Used
 
-- **React Native (0.74.5)**: The framework used for building the mobile app.
+- **React Native**: Framework for building mobile applications using React.
 - **Expo**: A framework and platform for universal React applications.
-- **TypeScript (5.3.3)**: Static typing for improved code reliability.
-- **Gluestack UI**: A component library used for building and styling the UI.
-- **NativeWind**: Tailwind CSS in React Native for utility-first styling.
-- **React Navigation**: Manages navigation within the app, including stacks and screens.
+- **React Navigation**: Routing and navigation for React Native.
+- **React Query**: Data fetching and synchronization for React applications.
+- **Day.js**: A lightweight date library.
+- **NativeWind**: Utility-first CSS for React Native.
 
-## Releases
+## Project Setup
 
-You can test the latest version of the app directly from the available release. Follow the steps below to download and run the release:
+### Prerequisites
 
-1. **Download the latest release:**  
-   Visit the [releases page](https://github.com/Frankdias92/react-native/releases/tag/v1.0.0) and download the file corresponding to the release you want to test (typically a `.zip` or `.tar.gz` file).
+Ensure you have the following installed:
 
-2. **Extract the downloaded file:**
-   - On Windows, right-click the file and select "Extract Here" or use a decompression tool.
-   - On macOS or Linux, you can use the terminal with the `unzip` or `tar -xzvf` command (depending on the format).
+- Node.js
+- Android Studio (for emulation) or App expo installed in your phone
 
-3. **Navigate to the extracted directory:**
+### Installation
 
-    ```bash
-    cd path/to/extracted-directory
-    ```
+1. **Clone the Repository**
 
-4. **Install dependencies:**
+   ```bash
+   git clone https://github.com/yourusername/starting-with-rn.git
+   cd starting-with-rn
+   ```
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+2. **Install Dependencies**
 
-5. **Run the app:**
+   ```bash
+   npm install
+   ```
 
-    ```bash
-    npx run start
-    ```
+### Running the Application
 
-To run the app on specific platforms:
+To run the application, use the following commands:
 
-```bash
-npx run android  # For Android
-npx run ios      # For iOS
-npx run web      # For Web
+- **Start on Android Device/Emulator**
 
-## Project Structure
+  First, make sure Android Studio is running an emulator or connect an Android device via USB.
 
-```bash
-.
-├── src
-│   ├── @types
-│   │   └── nativewind-env.d.ts       # Type definitions for NativeWind
-│   ├── components
-│   │   ├── ButtonComponent.tsx       # Reusable button component
-│   │   ├── HomeHeader.tsx            # Header for the home screen
-│   │   ├── Main.tsx                  # Main logic handling component
-│   │   ├── ShowTasks.tsx             # Renders each task in the list
-│   │   └── ShowTasksResults.tsx      # Displays task statistics
-│   ├── routes
-│   │   ├── index.tsx                 # Main navigation logic
-│   │   └── app.routes.tsx            # Application route management
-│   ├── screens
-│   │   └── Home.tsx                  # Main screen where tasks are displayed
-├── App.tsx                           # Entry point of the app
-├── package.json                      # Project dependencies and scripts
-└── README.md                         # Project documentation
-```
+  ```bash
+  npx react-native run-android
+  ```
 
-## Usage
+- **Start on iOS Simulator**
 
-1. Upon launching the app, users can add a new task by entering text into the input field and clicking the **Add** button.
-2. Tasks will appear in the list with options to **Mark as Completed** or **Delete**.
-3. The header shows the total number of tasks created and completed in real-time.
+  Ensure you have a macOS system with Xcode installed, and then use:
 
-## Key Libraries and Tools
+  ```bash
+  npx react-native run-ios
+  ```
 
-- **Expo**: Simplifies running and debugging the React Native app across platforms.
-- **React Navigation**: Helps manage navigation between different screens.
-- **NativeWind**: Tailwind CSS utility-based styling for React Native.
-- **Gluestack UI**: Provides UI components and themes.
-- **React Native SVG**: Handles rendering of SVG images in the app.
-- **Lucide Icons**: Vector icons used in various parts of the app.
+- **Start on Web**
 
-## Code Example
+  ```bash
+  npx expo start --web
+  ```
 
-Here is an example of how the app handles task management:
+### API Endpoints
 
-```typescript
- const [data, setData] = useState<TasksProps[]>([])
-    const [newTask, setNewTask] = useState<string>('')
-    const [totalTasksFineshed, setTotalTasksFineshed] = useState<number>(0)
+The front-end application communicates with the back-end API using the following endpoints:
 
-    const handleAddTask = () => {
-        if (newTask.trim() === '') {
-            return
-        }
-        setData((prevData) => [...prevData, { 
-            id: String(new Date().getTime()), 
-            task: newTask, 
-            isFinished: false 
-        }])
-        setNewTask('')
-    }
+- **Get Summary**
 
-    const handleDeleteTask = (id: string) => {
-        setData((prevData) => prevData.filter((item) => item.id !== id))
-        const removeTask = data.find((item) => item.id === id)
+  ```typescript
+  export async function getSummary(): Promise<SummaryProps> {
+      const response = await fetch('http://192.168.1.21:3333/summary');
+      const data = await response.json();
+      return data.summary;
+  }
+  ```
 
-        if (removeTask?.isFinished) {
-            setTotalTasksFineshed((prev) => prev - 1)
-        }
-    }
+- **Create Goal Completion**
 
-    const handleTaskFinished = async (id: string) => {
-        setData((prevData) => prevData.map((item) => {
-            if (item.id === id) {
-                const updateTask = { ...item, isFinished: !item.isFinished }
+  ```typescript
+  export async function createGoalCompletion(goalId: string) {
+      const response = await fetch('http://192.168.1.21:3333/completions', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ goalId }),
+      });
+      if (response.ok) {
+          getSummary();
+          getPendingGoals();
+      }
+  }
+  ```
 
-                setTotalTasksFineshed((prev) => updateTask.isFinished ? prev + 1 : prev - 1)
-                return updateTask
-            }
-            return item
-        }) 
-        )
-    }
-```
+- **Create New Goal**
 
-## License
+  ```typescript
+  export async function createNewGoal(title: string, desiredWeeklyFrequency: number) {
+      const response = await fetch('http://192.168.1.21:3333/goals', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, desiredWeeklyFrequency }),
+      });
+      if (response.ok) {
+          getSummary();
+          getPendingGoals();
+      }
+  }
+  ```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Decrement Goal Completion**
+
+  ```typescript
+  export async function decrementGoalCompletion(goalId: string) {
+      const response = await fetch('http://192.168.1.21:3333/completions/decrement', {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ goalId }),
+      });
+      if (response.ok) {
+          getSummary();
+          getPendingGoals();
+      }
+  }
+  ```
+
+- **Get Pending Goals**
+
+  ```typescript
+  export async function getPendingGoals(): Promise<PeendingGoalsResponse> {
+      const response = await fetch('http://192.168.1.21:3333/pending-goals');
+      if (!response.ok) {
+          throw new Error('Failed to fetch pending goals');
+      }
+      const data = await response.json();
+      return data.pendingGoals;
+  }
+  ```
