@@ -1,7 +1,6 @@
 import { Button as GluestackButton, Icon, Text } from "@gluestack-ui/themed";
 import { Plus } from "lucide-react-native";
 import { ComponentProps } from "react";
-import { TouchableOpacity } from "react-native";
 
 type PendingGoalsProps = {
     id: string;

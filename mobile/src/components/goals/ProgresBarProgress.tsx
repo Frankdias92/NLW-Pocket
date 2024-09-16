@@ -2,7 +2,7 @@ import { ProgresBarProgress } from "@components/ui/ProgresBar";
 import { Center, HStack, Text } from "@gluestack-ui/themed";
 import { useQuery } from "@tanstack/react-query";
 // import { ProgressBar } from '@react-native-community/progress-bar-android';
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { getSummary } from "../../service/api";
 
 

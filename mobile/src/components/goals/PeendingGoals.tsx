@@ -1,12 +1,10 @@
 import { FlatList } from "react-native";
-import { useState } from "react";
 
 import { VStack, Text } from "@gluestack-ui/themed";
 import { ItemOfList } from "@components/ItemOfList";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getPendingGoals, PeendingGoalsResponse } from "../../service/get-peendingGoals";
-import { err } from "react-native-svg";
 import { createGoalCompletion } from "../../service/create-goal-completion";
 
 
