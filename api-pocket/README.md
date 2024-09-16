@@ -34,8 +34,8 @@ Ensure the following are installed:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/next-level-week-backend.git
-   cd next-level-week-backend
+   git clone https://github.com/Frankdias92/NLW-Pocket
+   cd /api-pocket
    ```
 
 2. **Create a `.env` File or rename `.env.exemple` to `.env`**

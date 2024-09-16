@@ -34,8 +34,8 @@ Ensure you have the following installed:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/starting-with-rn.git
-   cd starting-with-rn
+   git clone https://github.com/Frankdias92/NLW-Pocket
+   cd /mobile
    ```
 
 2. **Install Dependencies**
@@ -53,21 +53,7 @@ To run the application, use the following commands:
   First, make sure Android Studio is running an emulator or connect an Android device via USB.
 
   ```bash
-  npx react-native run-android
-  ```
-
-- **Start on iOS Simulator**
-
-  Ensure you have a macOS system with Xcode installed, and then use:
-
-  ```bash
-  npx react-native run-ios
-  ```
-
-- **Start on Web**
-
-  ```bash
-  npx expo start --web
+  npx expo start
   ```
 
 ### API Endpoints
