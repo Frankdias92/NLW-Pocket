@@ -1,6 +1,11 @@
 # Next Level Week 17 - Front-End Application
 
-This repository contains the code for the front-end of the application developed during the 17th edition of the Next Level Week, held from September 9 to 11, 2024. This project demonstrates how to build a mobile application using React Native and Expo.
+This repository contains the code for the front-end of the application developed during the 17th edition of the Next Level Week, held from September 9 to 11, 2024. This particula project I am using React Native and Expo.
+
+<div style="display: flex; with: auto; gap: 16px; justify-content: center">
+    <img src="./src/assets/preview/previwHome.gif" style="display: flex; height: 850px; border-radius:25px"/>
+    <img src="./src/assets/preview/NewGoalView.gif" style="display: flex; height: 850px; border-radius:25px"/>
+</div>
 
 ## Project Overview
 
