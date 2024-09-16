@@ -1,15 +1,19 @@
 import { and, count, eq, gte, lte, sql } from 'drizzle-orm'
-import { db } from '../db'
-import { goalCompletions, goals } from '../db/schema'
 import dayjs from 'dayjs'
 
-interface CreateGoalCompletionRequest {
+import { db } from '../db'
+import { goalCompletions, goals } from '../db/schema'
+
+interface GoalCompletionReference {
   goalId: string
+}
+interface decrementionCompletion {
+  goalId: string, 
 }
 
 export async function createGoalCompletion({
   goalId,
-}: CreateGoalCompletionRequest) {
+}: GoalCompletionReference) {
   const firstDayOfWeek = dayjs().startOf('week').toDate()
   const lastDayOfWeek = dayjs().endOf('week').toDate()
 
@@ -58,17 +62,12 @@ export async function createGoalCompletion({
   return { goalCompletion }
 }
 
-export async function removeGoalCompletion({ goalId }: CreateGoalCompletionRequest) {
-  const result = await db
+export async function decrementGoalCompletion({ goalId }: decrementionCompletion ) {
+  const deleteResult = await db
     .delete(goalCompletions)
-    .where(eq(goalCompletions.goalId, goalId))
-    // .orderBy(sql`${goalCompletions.createdAt} desc`)
-    // .limit(1)
+    .where(eq(goalCompletions.id, goalId))
     .returning()
 
-  if (!result[0]) {
-    throw new Error('No completion found to remove')
-  }
-
-  return { success: true }
+  return { deletedCompletion: deleteResult[0] }
 }
+
